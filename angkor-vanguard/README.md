@@ -38,7 +38,8 @@ Build host: **Linux** (this CI/agent VM). `electron-builder` downloads the Windo
 ```bash
 cd angkor-vanguard
 npm install
-npm run dist:win
+CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist:win          # portable .exe (works on Linux)
+npm run dist:win:installer   # NSIS — run on Windows (or Linux + Wine)
 ```
 
 ### Artifacts (`angkor-vanguard/dist/`)
