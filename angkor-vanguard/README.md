@@ -52,6 +52,10 @@ npm run dist:win:installer   # NSIS — run on Windows (or Linux + Wine)
 
 Unpacked builds work on Linux builders without Wine; use them for smoke tests or ship the portable target when NSIS fails.
 
+### Prebuilt download
+
+[GitHub Release **angkor-vanguard-v1.0.0**](https://github.com/panha2102/Cambopixel/releases/tag/angkor-vanguard-v1.0.0) — `AngkorVanguard-KulenChronicle-1.0.0-portable.exe` (Windows x64 portable).
+
 ## Project layout
 
 ```
