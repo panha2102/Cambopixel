@@ -1,0 +1,36 @@
+name: Angkor Vanguard Windows build
+
+on:
+  pull_request:
+    paths:
+      - 'angkor-vanguard/**'
+  push:
+    branches:
+      - main
+      - 'cursor/**'
+    paths:
+      - 'angkor-vanguard/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: angkor-vanguard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: angkor-vanguard/package-lock.json
+      - run: npm ci
+      - run: npm run dist:win
+      - run: npm run dist:win:installer
+      - uses: actions/upload-artifact@v4
+        with:
+          name: angkor-vanguard-win-exe
+          path: |
+            angkor-vanguard/dist/*.exe
+            angkor-vanguard/dist/win-unpacked/**

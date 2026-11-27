@@ -1,0 +1,55 @@
+{
+  "name": "angkor-vanguard-kulen-chronicle",
+  "productName": "Angkor Vanguard: Kulen Chronicle",
+  "version": "1.0.0",
+  "description": "PS2-style Khmer hack-and-slash survivor — Electron desktop build",
+  "main": "electron/main.js",
+  "author": "Cambopixel",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win portable --x64",
+    "dist:win:installer": "electron-builder --win nsis --x64",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.cambopixel.angkorvanguard",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "game/**/*"
+    ],
+    "asar": true,
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "AngkorVanguard-KulenChronicle-${version}-${os}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "AngkorVanguard-KulenChronicle-${version}-portable.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "AngkorVanguard-KulenChronicle-${version}-Setup.exe"
+    }
+  }
+}
